@@ -32,12 +32,13 @@ def fetch(pmid, link, prefix, wordcloud, download, IF_filter):
 
 if __name__ == '__main__':
 	
-	parser = argparse.ArgumentParser(description="Searching for the cited papers or reference papers in Pubmed", usage="./Paperlink.py -pmid 30992999 -link cited -prefix test")
+	#parser = argparse.ArgumentParser(description="Searching for the cited papers or reference papers in Pubmed", usage="./Paperlink.py -pmid 30992999 -link cited -prefix test")
+	parser = argparse.ArgumentParser(description="Searching for the cited papers or reference papers in Pubmed")
 
-	parser.add_argument('-pmid', required=True, metavar='int', help="Pubmed id of a specific paper") # 30992999
-	parser.add_argument('-link', type=str, default = 'cited', choices=['cited','refs'], help = "the linked database")
-	parser.add_argument('-prefix',type=str, metavar='str', default = 'Pubmed', help = "the prefix of output (default: Pubmed)")
-	parser.add_argument('-cutoff', default=0, type=float, metavar='float', help = "Set the cut off of paper's journal impact factor")
+	parser.add_argument('-pmid', required=True, metavar='integer', help="Pubmed id of a specific paper") # 30992999
+	parser.add_argument('-link', type=str, default = 'cited', choices=['cited','refs'], help = "the linked database (default: cited)")
+	parser.add_argument('-prefix',type=str, metavar='string', default = 'Pubmed', help = "the prefix of output (default: Pubmed)")
+	parser.add_argument('-cutoff', default=0, type=float, metavar='float', help = "Set the cut off of paper's journal impact factor (default: 0)")
 	parser.add_argument('-wordcloud', action = 'store_true', help = "perform worldcloud plot for paper's abstract")
 	parser.add_argument('-download', action = 'store_true', help = "download pdf files")
 	

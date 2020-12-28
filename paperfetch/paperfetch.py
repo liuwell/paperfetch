@@ -27,12 +27,13 @@ def fetch(term, prefix, wordcloud, download, IF_filter, retmax):
 
 if __name__ == '__main__':
 	
-	parser = argparse.ArgumentParser(description="A tool for fetch academic papers from Pubmed", usage="./Paperlink.py -pmid 30992999 -link refs -prefix test -cutoff 20 -download -wordcloud")
+	#parser = argparse.ArgumentParser(description="A tool for fetch academic papers from Pubmed", usage="./Paperlink.py -pmid 30992999 -link refs -prefix test -cutoff 20 -download -wordcloud")
+	parser = argparse.ArgumentParser(description="A tool for fetch academic papers from Pubmed")
 
-	parser.add_argument('-t', '--term', type=str, metavar='str', required=True, help="the search term, Entrez text query")
-	parser.add_argument('-p', '--prefix',type=str, metavar='str', default = 'Pubmed', help = "the prefix of output (default: Pubmed)")
-	parser.add_argument('-cutoff', default=0, type=float, metavar='float', help = "Set the cut off of paper's journal impact factor")
-	parser.add_argument('-RetMax', default=1000, type=int, metavar='int', help = "return max number of papers (default: 1000)")
+	parser.add_argument('-t', '--term', type=str, metavar='string', required=True, help="the search term, Entrez text query")
+	parser.add_argument('-p', '--prefix',type=str, metavar='string', default = 'Pubmed', help = "the prefix of output (default: Pubmed)")
+	parser.add_argument('-cutoff', default=0, type=float, metavar='float', help = "Set the cut off of paper's journal impact factor (default: 0)")
+	parser.add_argument('-RetMax', default=1000, type=int, metavar='integer', help = "return max number of papers (default: 1000)")
 	parser.add_argument('-wordcloud', action = 'store_true', help = "perform worldcloud plot for paper's abstract")
 	parser.add_argument('-download', action = 'store_true', help = "download pdf files")
 	
