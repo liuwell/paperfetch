@@ -1,0 +1,8 @@
+biopython
+matplotlib
+pandas
+wordcloud
+beautifulsoup4
+requests
+retrying
+pysocks
