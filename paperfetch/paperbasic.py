@@ -67,7 +67,7 @@ def entrez(idlist, prefix, IF_filter):
 	
 	dfout = df.iloc[:, 0:7]
 	print(dfout)
-	fout = prefix + "_simple.txt"
+	fout = prefix + "_papers.txt"
 	dfout.to_csv(fout, index=False, sep='\t')
 	return df
 

@@ -27,7 +27,6 @@ def fetch(term, prefix, wordcloud, download, IF_filter, retmax):
 
 if __name__ == '__main__':
 	
-	#parser = argparse.ArgumentParser(description="A tool for fetch academic papers from Pubmed", usage="./Paperlink.py -pmid 30992999 -link refs -prefix test -cutoff 20 -download -wordcloud")
 	parser = argparse.ArgumentParser(description="A tool for fetch academic papers from Pubmed")
 
 	parser.add_argument('-t', '--term', type=str, metavar='string', required=True, help="the search term, Entrez text query")

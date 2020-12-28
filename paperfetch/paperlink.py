@@ -32,7 +32,6 @@ def fetch(pmid, link, prefix, wordcloud, download, IF_filter):
 
 if __name__ == '__main__':
 	
-	#parser = argparse.ArgumentParser(description="Searching for the cited papers or reference papers in Pubmed", usage="./Paperlink.py -pmid 30992999 -link cited -prefix test")
 	parser = argparse.ArgumentParser(description="Searching for the cited papers or reference papers in Pubmed")
 
 	parser.add_argument('-pmid', required=True, metavar='integer', help="Pubmed id of a specific paper") # 30992999
