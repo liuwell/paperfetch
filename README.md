@@ -1,6 +1,6 @@
 #  paperfetch
   
-paperfetch can search papers for pubmed and download papers from sci-hub, it also can get the reference and cited papers from a given article
+**paperfetch** can search papers for Pubmed and download papers from Sci-Hub, it also can get the reference and cited papers from a given article
   
 ##  Requirements
   
@@ -25,16 +25,16 @@ Several python packages are requied for paperfetch
   
 ```{bash}
 # Clone remote repository
-$ git clone https://github.com/liuwell/paperfetch.git
+git clone https://github.com/liuwell/paperfetch.git
   
 # Install required python pacakge
-$ cd paperfetch
-$ pip install -r requirements.txt
+cd paperfetch
+pip install -r requirements.txt
   
 # Add execution path
 # The path of current dir can get by shell command "pwd"
-$ echo "export PATH=$PATH:current_dir/paperfetch" >> ~/.bashrc
-$ source ~/.bashrc
+echo "export PATH=$PATH:current_dir/paperfetch" >> ~/.bashrc
+source ~/.bashrc
 ```
   
 ##  Usage
@@ -73,28 +73,29 @@ optional arguments:
   
   
 ```bash
-paperfetch.py -t "small RNA[title]" -p isomirs
+# generate a txt file with search result
+paperfetch.py -t "small RNA[title]" -p smallRNA
 ```
   
 #####  1.2 Filter papers according to impact factor
   
   
 ```bash
-paperfetch.py -t "small RNA[title]" -p isomirs -cutoff 3
+paperfetch.py -t "small RNA[title]" -p smallRNA -cutoff 3
 ```
   
 #####  1.3 Download papers' pdf files from Sci-Hub
   
   
 ```bash
-paperfetch.py -t "small RNA[title]" -p isomirs -cutoff 3 -download
+paperfetch.py -t "small RNA[title]" -p smallRNA -cutoff 3 -download
 ```
   
 #####  1.4 Perform a wordcloud plot for searched papers' abstract
   
   
 ```bash
-paperfetch.py -t "small RNA[title]" -p isomirs -cutoff 3 -wordcloud
+paperfetch.py -t "small RNA[title]" -p smallRNA -cutoff 3 -wordcloud
 ```
   
 ####  2. paperlink
