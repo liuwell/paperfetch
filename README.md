@@ -1,6 +1,6 @@
 #  paperfetch
   
-**paperfetch** can search papers for Pubmed and download papers from Sci-Hub, it also can get the reference and cited papers from a given article
+**paperfetch** can search papers from Pubmed and download papers from Sci-Hub, it also can get the reference and cited papers from a given article
   
 ##  Requirements
   
