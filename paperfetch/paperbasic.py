@@ -73,7 +73,7 @@ def entrez(idlist, prefix, IF_filter):
 
 ### download pdf
 def Download(df, prefix):
-	df2 = df.iloc[:, 7:9].T
+	df2 = df.iloc[:, 1:9].T
 	df2 = df2.to_dict()
 	
 	sh = SciHub()
@@ -93,16 +93,26 @@ def Download(df, prefix):
 		pdfname = df2[a]['pdfname']
 		pdfname2 = os.path.join(directory, pdfname)
 		result = sh.download(doi, path=pdfname2)
-		print('+++ Downloaded sucessful, %s' % pdfname)
+
+		if os.path.exists(pdfname2):
+			print('+++ Downloaded sucessful, %s\n' % pdfname)
+		else:
+			pmid = df2[a]['PMID']
+			result = sh.download(pmid, path=pdfname2)
+			if os.path.exists(pdfname2):
+				print('+++ Downloaded sucessful, %s\n' % pdfname)
+			else:
+				print('--- Downloaded failed, %s\n' % pdfname)
+			
 
 ### WordCloud
 def Wordcloud(df, prefix):
 
 	print("\nPerforming wordcloud plot ... ")
 	Abstract = ' '.join(df['Abstract'].to_numpy())
-	cnt = Counter(Abstract.split())
-	most_occur = cnt.most_common(10)
-	print("Most 10 Frequent word:",most_occur)
+	#cnt = Counter(Abstract.split())
+	#most_occur = cnt.most_common(10)
+	#print("Most 10 Frequent word:",most_occur)
 
 	wordcloud = WordCloud().generate(Abstract)
 	plt.figure(figsize=(10,20))
