@@ -40,9 +40,9 @@ def entrez(idlist, prefix, IF_filter):
 			# DOI, title
 			doi = source.split('doi: ')[-1].split()[0][:-1]
 			title = str(article.get('TI', '?'))
-			if '/' in title:
-				title = title.replace('/', '-')
-			pdfname = str(i+1) + '-' + title[:-1] + '.pdf'
+			#if '/' in title:
+			title = title.replace('/', '-')
+			title = title.replace(':', '-')
 
 			# journal, IF
 			journal = source.split('.')[0]
@@ -53,15 +53,22 @@ def entrez(idlist, prefix, IF_filter):
 			# publish date
 			pubdate = source.split('.')[1][1:9]
 			pubdate = pubdate.split(';')[0]
+			
+			#pdfname = str(i+1) + '-'+ pubdate[0:4] + '-' + journal + '-' + title[:-1] + '.pdf'
+			pdfname = pubdate[0:4] + '-' + journal + '-' + title[:-1] + '.pdf'
 
-			line = [i+1, article['PMID'], pubdate, journal, IF, article['TI'], abstract, doi, pdfname]
+			#line = [i+1, article['PMID'], pubdate, journal, IF, article['TI'], abstract, doi, pdfname]
+			line = [article['PMID'], pubdate, journal, IF, article['TI'], abstract, doi, pdfname]
 			lineList.append(line)
+
 		except Exception as e:
 			#print(i+1, ', ', "Key Error")
 			print(e)
 
-	df = pd.DataFrame(lineList, columns=['ID', 'PMID', 'PublishDate', 'Journal', 'IF', 'Title', 'Abstract', 'DOI', 'pdfname'])
+	#df = pd.DataFrame(lineList, columns=['ID', 'PMID', 'PublishDate', 'Journal', 'IF', 'Title', 'Abstract', 'DOI', 'pdfname'])
+	df = pd.DataFrame(lineList, columns=['PMID', 'PublishDate', 'Journal', 'IF', 'Title', 'Abstract', 'DOI', 'pdfname'])
 	df = df[df['IF']>=IF_filter]
+	df = df.sort_values(by="PublishDate",ascending=False)
 	#df = df.sort_values(by='IF', ascending=False)
 	print("\nThe cut off of IF is %d, remained papers: %s" % (IF_filter, df.shape[0]))
 	
@@ -73,7 +80,7 @@ def entrez(idlist, prefix, IF_filter):
 
 ### download pdf
 def Download(df, prefix):
-	df2 = df.iloc[:, 1:9].T
+	df2 = df.iloc[:, 0:9].T
 	df2 = df2.to_dict()
 	
 	sh = SciHub()
